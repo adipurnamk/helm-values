@@ -1,0 +1,21 @@
+architecture: standalone
+
+persistence:
+  size: 2Gi
+
+resources:
+  requests:
+    cpu: 1M
+    memory: 2Gi
+  limits:
+    cpu: 1M
+    memory: 2Gi
+
+auth:
+  user: "user"
+  postgresPassword: "YourStrongPassword" # Change this!
+
+# Add any other configuration options you might need to change via Helm here.
+# For example, to change the PostgreSQL version:
+# image:
+#   tag: "15.3.0" # or whatever version you want.

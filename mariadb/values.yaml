@@ -1,0 +1,22 @@
+architecture: standalone
+
+primary:
+  persistence:
+    size: 2Gi
+
+resources:
+  requests:
+    cpu: 1
+    memory: 2Gi
+  limits:
+    cpu: 1
+    memory: 2Gi
+
+auth:
+  rootPassword: "myStrongRootPassword"
+  databaseUser: "myuser"
+  databasePassword: "myuserpassword"
+  databaseName: "mydb"
+persistence:
+  enabled: true
+  size: 10Gi

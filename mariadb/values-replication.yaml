@@ -1,0 +1,31 @@
+architecture: replication
+
+primary:
+  persistence:
+    size: 10Gi
+    
+secondary:
+  persistence:
+    size: 5Gi
+  replicaCount: 2
+
+auth:
+  rootPassword: "myStrongRootPassword"
+  database: mydb
+  username: myuser
+  password: myuserpassword
+  replicationUser: repluser
+  replicationPassword: replpassword
+  forcePassword: true
+
+initdbScripts:
+  init-mydb.sql: |-
+    CREATE TABLE IF NOT EXISTS mydb.my_table (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(255),
+      value INT
+    );
+    INSERT INTO mydb.my_table (name, value) VALUES ('Mock Data 1', 10);
+    INSERT INTO mydb.my_table (name, value) VALUES ('Mock Data 2', 20);
+    GRANT SELECT ON mydb.my_table TO 'repluser'@'%';
+    FLUSH PRIVILEGES;
